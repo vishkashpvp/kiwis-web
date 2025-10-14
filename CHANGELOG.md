@@ -11,3 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added minimal landing page
 - Added option for dark theme toggle
+
+### Internal
+
+- Added Makefile for developer task automation
