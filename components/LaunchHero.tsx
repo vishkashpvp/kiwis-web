@@ -1,4 +1,6 @@
 import { env } from "@/lib/env";
+import { OAuthProvider } from "@/types/auth";
+import LoginButton from "./LoginButton";
 
 export default function LaunchHero() {
   return (
@@ -12,16 +14,12 @@ export default function LaunchHero() {
           AI-powered insights from your email
         </h1>
         <p className="text-pretty text-muted-foreground md:text-lg">
-          See upcoming payments, fully private. {env.server.APP_NAME} surfaces what matters without
-          ever compromising your data.
+          See upcoming payments, fully private. {env.client.NEXT_PUBLIC_APP_NAME} surfaces what
+          matters without ever compromising your data.
         </p>
       </div>
 
-      <div>
-        <h1 className="font-semibold leading-tight text-green-600 text-balance">
-          we are coming soon... 💚
-        </h1>
-      </div>
+      <LoginButton provider={OAuthProvider.Google} />
     </div>
   );
 }
