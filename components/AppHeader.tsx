@@ -1,3 +1,7 @@
+"use client";
+
+import { env } from "@/lib/env";
+
 export default function AppHeader() {
   return (
     <header className="w-full">
@@ -9,7 +13,9 @@ export default function AppHeader() {
               className="inline-flex items-center justify-center w-6 h-6 text-xs font-semibold rounded-md bg-primary text-primary-foreground">
               ₹$
             </span>
-            <span className="text-sm font-medium tracking-tight">PayPulse</span>
+            <span className="text-sm font-medium tracking-tight">
+              {env.client.NEXT_PUBLIC_APP_NAME}
+            </span>
           </div>
         </div>
       </nav>
