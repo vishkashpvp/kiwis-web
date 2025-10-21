@@ -1,3 +1,5 @@
+import { env } from "@/lib/env";
+
 export default function LaunchHero() {
   return (
     <div className="flex flex-col items-start gap-8">
@@ -10,8 +12,8 @@ export default function LaunchHero() {
           AI-powered insights from your email
         </h1>
         <p className="text-pretty text-muted-foreground md:text-lg">
-          See upcoming payments, fully private. PayPulse surfaces what matters without ever
-          compromising your data.
+          See upcoming payments, fully private. {env.server.APP_NAME} surfaces what matters without
+          ever compromising your data.
         </p>
       </div>
 
