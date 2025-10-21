@@ -6,7 +6,7 @@ export default function AppFooter() {
     <footer className="mt-8 border-t border-border">
       <div className="flex items-center justify-between w-full max-w-3xl px-6 py-3 mx-auto">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} {env.server.APP_NAME} — Fully private by design.
+          © {new Date().getFullYear()} {env.client.NEXT_PUBLIC_APP_NAME} — Fully private by design.
         </p>
         <ModeToggle />
       </div>
