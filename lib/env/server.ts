@@ -12,6 +12,11 @@ export const serverEnv = createEnv({
   server: {
     // 👇 Add server-only environment variables here as needed.
     APP_NAME: z.string().min(1),
+    BETTER_AUTH_SECRET: z.string().min(1),
+    BETTER_AUTH_URL: z.url(),
+    DATABASE_URL: z.string().min(1),
+    GOOGLE_CLIENT_ID: z.string().min(1),
+    GOOGLE_CLIENT_SECRET: z.string().min(1),
   },
   // for Next.js >= 13.4.4, you can just reference process.env:
   experimental__runtimeEnv: process.env,
