@@ -6,11 +6,11 @@ import { ReactNode } from "react";
 import AppFooter from "@/components/AppFooter";
 import AppHeader from "@/components/AppHeader";
 import { Spinner } from "@/components/ui/spinner";
-import { useSession } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: session, isPending } = authClient.useSession();
 
   if (isPending) return <Loader />;
 
