@@ -1,6 +1,6 @@
 import { env } from "@/lib/env";
 import { OAuthProvider } from "@/types/auth";
-import LoginButton from "./LoginButton";
+import OAuthButton from "./OAuthButton";
 
 export default function LaunchHero() {
   return (
@@ -19,7 +19,7 @@ export default function LaunchHero() {
         </p>
       </div>
 
-      <LoginButton provider={OAuthProvider.Google} />
+      <OAuthButton provider={OAuthProvider.Google} label="Sign in with Google" />
     </div>
   );
 }
