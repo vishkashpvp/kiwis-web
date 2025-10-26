@@ -1,22 +1,24 @@
-"use client";
+import { headers } from "next/headers";
 
-import Image from "next/image";
+import { auth } from "@/lib/auth";
+import { SCOPE_GMAIL_READONLY } from "@/lib/constants";
+import prisma from "@/lib/prisma";
+import { OAuthProvider } from "@/types/auth";
+import DashboardClient from "./DashboardClient";
+import LinkMailService from "./LinkMailService";
 
-import { useSession } from "@/lib/auth-client";
+export default async function DashboardPage() {
+  const session = await auth.api.getSession({ headers: await headers() });
 
-export default function Dashboard() {
-  const { data: session } = useSession();
+  if (!session?.user) return <p>Please log in.</p>;
 
-  if (!session?.user) return null;
+  const googleAccount = await prisma.account.findFirst({
+    where: { userId: session.user.id, providerId: OAuthProvider.Google },
+  });
 
-  const user = session.user;
+  const isMailServiceLinked = googleAccount?.scope?.includes(SCOPE_GMAIL_READONLY);
 
-  return (
-    <div className="p-5">
-      <h3 className="text-2xl font-bold">welcome {user.name}</h3>
-      {user.image?.trim() && (
-        <Image priority src={user.image} alt={user.name ?? "user"} width={100} height={100} />
-      )}
-    </div>
-  );
+  if (!isMailServiceLinked) return <LinkMailService name={session.user.name} />;
+
+  return <DashboardClient user={session.user} />;
 }
