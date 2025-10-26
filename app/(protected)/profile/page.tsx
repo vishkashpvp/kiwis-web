@@ -1,18 +1,21 @@
-"use client";
+import { headers } from "next/headers";
 
-import { authClient } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
+import { SCOPE_GMAIL_READONLY } from "@/lib/constants";
+import prisma from "@/lib/prisma";
+import { OAuthProvider } from "@/types/auth";
+import ProfileClient from "./ProfileClient";
 
-export default function Page() {
-  const { data: session } = authClient.useSession();
+export default async function Page() {
+  const session = await auth.api.getSession({ headers: await headers() });
 
-  if (!session?.user) return null;
+  if (!session?.user) return <p>Please log in.</p>;
 
-  const user = session.user;
+  const googleAccount = await prisma.account.findFirst({
+    where: { userId: session.user.id, providerId: OAuthProvider.Google },
+  });
 
-  return (
-    <div className="p-5">
-      <p>{user.name}</p>
-      <h3>{user.email}</h3>
-    </div>
-  );
+  const isMailServiceLinked = googleAccount?.scope?.includes(SCOPE_GMAIL_READONLY);
+
+  return <ProfileClient user={session.user} isMailServiceLinked={isMailServiceLinked} />;
 }
