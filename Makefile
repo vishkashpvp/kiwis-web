@@ -1,4 +1,4 @@
-# Makefile for PayPulse Web
+# Makefile for Kiwis Web
 
 # Variables
 NPM = npm
