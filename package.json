@@ -1,7 +1,8 @@
 {
-  "name": "paypulse-web",
+  "name": "kiwis-web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kiwis.club",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
