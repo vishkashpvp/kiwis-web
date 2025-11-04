@@ -1,4 +1,4 @@
-# PayPulse.pro (working title)
+# Kiwis.Club
 
 AI-powered insights from your email — see upcoming payments, fully private.
 
