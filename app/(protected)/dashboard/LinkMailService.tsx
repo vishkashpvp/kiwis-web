@@ -1,5 +1,6 @@
 "use client";
 
+import { SignOutButton } from "@/components/SignOutButton";
 import { Button } from "@/components/ui/button";
 import { requestGmailAccess } from "@/lib/auth-client";
 
@@ -18,9 +19,13 @@ export default function LinkMailService({ name }: { name: string }) {
       <p className="my-3">
         To get started, please link your Gmail account to sync emails and payments.
       </p>
-      <Button onClick={handleClick} type="button" className="cursor-pointer">
-        Link Gmail
-      </Button>
+      <div className="space-x-5">
+        <Button onClick={handleClick} type="button" className="cursor-pointer">
+          Link Gmail
+        </Button>
+
+        <SignOutButton />
+      </div>
     </div>
   );
 }
