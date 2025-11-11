@@ -1,13 +1,12 @@
 import { env } from "@/lib/env";
 import { OAuthProvider } from "@/types/auth";
 import OAuthButton from "./OAuthButton";
+import { Badge } from "./ui/badge";
 
 export default function LaunchHero() {
   return (
     <div className="flex flex-col items-start gap-8">
-      <div className="inline-flex items-center px-3 py-1 text-xs border rounded-full border-border text-muted-foreground">
-        Private by design
-      </div>
+      <Badge>Private by design</Badge>
 
       <div className="space-y-4">
         <h1 className="text-3xl font-semibold leading-tight text-balance md:text-5xl">
