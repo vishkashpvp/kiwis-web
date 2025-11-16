@@ -12,8 +12,10 @@ export const clientEnv = createEnv({
   client: {
     // 👇 Must start with NEXT_PUBLIC_ (Next.js requirement)
     NEXT_PUBLIC_APP_NAME: z.string().min(1),
+    NEXT_PUBLIC_SUPPORT_CONTACT: z.email(),
   },
   runtimeEnv: {
     NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
+    NEXT_PUBLIC_SUPPORT_CONTACT: process.env.NEXT_PUBLIC_SUPPORT_CONTACT,
   },
 });
