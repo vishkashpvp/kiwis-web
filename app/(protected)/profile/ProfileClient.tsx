@@ -1,19 +1,13 @@
 "use client";
 
 import { User } from "better-auth";
-import Image from "next/image";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ICONS_URL } from "@/lib/constants";
 
-interface ProfilePageProps {
-  user: User;
-  isMailServiceLinked: boolean | undefined;
-}
-
-export default function ProfilePage({ user, isMailServiceLinked }: ProfilePageProps) {
+export default function ProfileClient({ user }: { user: User }) {
   return (
     <main className="max-w-2xl p-6 mx-auto ">
       <div className="flex flex-col items-center mb-10">
@@ -42,28 +36,6 @@ export default function ProfilePage({ user, isMailServiceLinked }: ProfilePagePr
           <div className="cursor-not-allowed">
             <Input name="email" value={user.email} disabled className="w-full h-10 border" />
           </div>
-        </div>
-
-        <div className="flex flex-col gap-2 p-4 border rounded-lg">
-          <Label>Connected Accounts</Label>
-          <div className="text-sm">Your connected accounts.</div>
-          <div className="flex items-center gap-3 mt-2">
-            <Image src={ICONS_URL.google} alt="google" width={28} height={28} />
-            <div>
-              <div className="font-medium">Google</div>
-              <div className="text-sm">{user.email}</div>
-            </div>
-          </div>
-
-          {isMailServiceLinked && (
-            <div className="flex items-center gap-3 mt-2">
-              <Image src={ICONS_URL.gmail} alt="gmail" width={28} height={28} />
-              <div>
-                <div className="font-medium">Gmail</div>
-                <div className="text-sm">{user.email}</div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
     </main>
