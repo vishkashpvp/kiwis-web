@@ -9,9 +9,28 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
+const origin = env.client.NEXT_PUBLIC_APP_URL;
+const TITLE = env.client.NEXT_PUBLIC_APP_NAME;
+const DESCRIPTION = "AI-powered insights from your email — see upcoming payments, fully private.";
+
 export const metadata: Metadata = {
-  title: env.server.APP_NAME,
-  description: "AI-powered insights from your email — see upcoming payments, fully private.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    images: [
+      {
+        url: `${origin}/og`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [`${origin}/og`],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
