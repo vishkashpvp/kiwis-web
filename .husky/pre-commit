@@ -1,0 +1,25 @@
+echo "hey buddy! formatting & linting staged files before commit..."
+
+# format & lint staged files
+npx lint-staged || {
+  echo "bro... fix formatting/lint issues first! 💣 commit blocked! 🚫"
+  exit 1
+}
+
+echo "hey buddy! linting passed! ✅ checking typescript types..."
+
+# typescript type check (whole project)
+npm run check-types || {
+  echo "bro... fix TS errors before committing! 💣 commit blocked! 🚫"
+  exit 1
+}
+
+echo "hey buddy! typescript is clean! ✅ trying to build the project..."
+
+# next.js build (mandatory)
+npm run build || {
+  echo "bro... call a civil engineer, build failed 💣 commit blocked! 🚫"
+  exit 1
+}
+
+echo "hey buddy! all good! commit goes through 🚀"
