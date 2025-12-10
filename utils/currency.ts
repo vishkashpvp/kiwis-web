@@ -1,14 +1,15 @@
-import { getLocale } from "@/lib/locale";
-
-export function formatCurrency(amount: string | number, currency: string) {
-  const locale = getLocale();
-
+export function formatCurrency(
+  amount: string | number,
+  currency: string,
+  locale: string = "en-IN"
+) {
   try {
     return new Intl.NumberFormat(locale, {
       style: "currency",
       currency,
       currencyDisplay: "symbol",
-      minimumFractionDigits: 2,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
     }).format(Number(amount));
   } catch {
     // fallback for unknown currencies

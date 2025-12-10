@@ -27,7 +27,10 @@ import {
 import { PaymentStatus, type Payments } from "@/generated/prisma";
 import type { PaginatedPayments } from "@/lib/api/payments";
 import { getPayments } from "@/lib/api/payments";
-import { formatCurrency } from "@/lib/currency";
+import { cn } from "@/lib/utils";
+import { formatCurrency } from "@/utils/currency";
+import { formatDate } from "@/utils/date";
+import { capitalizeFirstLetter } from "@/utils/string";
 
 /** Helper: build pages with ellipsis (maxButtons e.g. 7) */
 function buildPages(total: number, limit: number, current: number, maxButtons = 7) {
@@ -145,7 +148,7 @@ export default function DashboardClient({ user }: { user: User }) {
           </TableHeader>
 
           <TableBody>
-            {/* empty state inside table */}
+            {/* empty state */}
             {!loading && result && result.data.length === 0 && (
               <TableRow className="hover:bg-transparent">
                 <TableCell colSpan={4} className="py-10 text-sm text-center text-gray-500">
@@ -154,23 +157,26 @@ export default function DashboardClient({ user }: { user: User }) {
               </TableRow>
             )}
 
-            {/* data rows (faded while loading) */}
+            {/* data rows with fade during loading */}
             {result &&
               result.data.length > 0 &&
               result.data.map((p: Payments) => (
                 <TableRow key={p.id} className={loading ? "opacity-60" : "hover:bg-muted/50"}>
-                  <TableCell className="py-3">{p.merchant}</TableCell>
+                  <TableCell className="py-3 max-w-[200px] truncate">{p.merchant}</TableCell>
 
-                  <TableCell className="py-3">
+                  <TableCell className="py-3 font-mono tabular-nums">
                     {formatCurrency(p.amount.toString(), p.currency)}
                   </TableCell>
 
-                  <TableCell className="py-3">{new Date(p.date).toLocaleDateString()}</TableCell>
+                  <TableCell className="py-3">{formatDate(p.date)}</TableCell>
 
                   <TableCell className="py-3">
                     <span
-                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs ${statusClass(p.status)}`}>
-                      {p.status}
+                      className={cn(
+                        "inline-flex items-center px-2.5 py-1 rounded-full text-xs",
+                        statusClass(p.status)
+                      )}>
+                      {capitalizeFirstLetter(p.status)}
                     </span>
                   </TableCell>
                 </TableRow>
