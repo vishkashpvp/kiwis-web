@@ -8,7 +8,15 @@ export async function proxy(request: NextRequest) {
     headers: request.headers,
   });
 
+  const isApi = request.nextUrl.pathname.startsWith("/api");
+
   if (!session) {
+    if (isApi) {
+      // API request → return 401 Unauthorized JSON
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Page request → redirect browser to home page
     return NextResponse.redirect(new URL("/", request.url));
   }
 
@@ -16,5 +24,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/profile"],
+  matcher: ["/api/:path*", "/dashboard", "/profile"],
 };
