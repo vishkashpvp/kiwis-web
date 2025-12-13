@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { env } from "@/lib/env";
 
 export default function AppHeader() {
@@ -13,9 +15,9 @@ export default function AppHeader() {
               className="inline-flex items-center justify-center w-6 h-6 text-xs font-semibold rounded-md bg-primary text-primary-foreground">
               ₹$
             </span>
-            <span className="text-sm font-medium tracking-tight">
+            <Link className="text-sm font-medium tracking-tight" href="/dashboard">
               {env.client.NEXT_PUBLIC_APP_NAME}
-            </span>
+            </Link>
           </div>
         </div>
       </nav>
