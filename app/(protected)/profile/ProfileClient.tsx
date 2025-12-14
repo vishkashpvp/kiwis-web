@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ICONS_URL } from "@/lib/constants";
+import { formatDate } from "@/utils/date";
 
 export default function ProfileClient({ user }: { user: User }) {
   return (
@@ -18,7 +19,7 @@ export default function ProfileClient({ user }: { user: User }) {
           </Avatar>
         </div>
         <h1 className="mt-4 text-3xl font-semibold">{user.name}</h1>
-        <div className="text-sm">Joined {new Date(user.createdAt).toLocaleDateString()}</div>
+        <div className="text-sm">Member since {formatDate(user.createdAt)}</div>
       </div>
 
       <section className="space-y-6">
