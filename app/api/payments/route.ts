@@ -2,23 +2,17 @@ import { NextResponse } from "next/server";
 
 import type { Prisma } from "@/generated/prisma";
 import { PaymentStatus, Recurrence } from "@/generated/prisma";
-import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { requireSession } from "@/lib/requireSession";
 import { parseEnum } from "@/utils/enum";
 
 export async function GET(req: Request) {
   try {
-    const session = await auth.api.getSession({ headers: req.headers });
-
-    if (!session?.user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const userId = session.user.id;
+    const { user } = await requireSession(req);
 
     // fetch user with accounts
     const userWithAccounts = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: user.id },
       select: {
         id: true,
         accounts: { select: { id: true } },
@@ -61,6 +55,8 @@ export async function GET(req: Request) {
     return NextResponse.json({ page, limit, total, data });
   } catch (err: unknown) {
     console.error("GET /api/payments error:", err);
+
+    if (err instanceof Response) return err;
 
     const message = err instanceof Error && err.message ? err.message : "Internal server error";
 
