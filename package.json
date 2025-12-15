@@ -1,6 +1,6 @@
 {
   "name": "kiwis-web",
-  "version": "0.6.0-beta",
+  "version": "0.7.0",
   "private": true,
   "homepage": "https://kiwis.club",
   "scripts": {
