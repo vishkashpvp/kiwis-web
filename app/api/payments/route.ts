@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import type { Prisma } from "@/generated/prisma";
 import { PaymentStatus, Recurrence } from "@/generated/prisma";
+import { handleApiError } from "@/lib/api/handleApiError";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/requireSession";
 import { parseEnum } from "@/utils/enum";
@@ -54,12 +55,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ page, limit, total, data });
   } catch (err: unknown) {
-    console.error("GET /api/payments error:", err);
-
-    if (err instanceof Response) return err;
-
-    const message = err instanceof Error && err.message ? err.message : "Internal server error";
-
-    return NextResponse.json({ error: message }, { status: 500 });
+    return handleApiError(err, "GET /api/payments");
   }
 }
