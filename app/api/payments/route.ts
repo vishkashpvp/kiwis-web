@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 
 import type { Prisma } from "@/generated/prisma";
-import { PaymentStatus, Recurrence } from "@/generated/prisma";
 import { handleApiError } from "@/lib/api/handleApiError";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/requireSession";
-import { parseEnum } from "@/utils/enum";
 
 export async function GET(req: Request) {
   try {
@@ -34,13 +32,13 @@ export async function GET(req: Request) {
     const status = searchParams.get("status");
     const recurrence = searchParams.get("recurrence");
 
-    const statusEnum = parseEnum(status, PaymentStatus);
-    const recurrenceEnum = parseEnum(recurrence, Recurrence);
+    const statusFilter = status ?? undefined;
+    const recurrenceFilter = recurrence ?? undefined;
 
     const where: Prisma.PaymentsWhereInput = {
       account_id: { in: accountIds },
-      ...(statusEnum ? { status: statusEnum } : {}),
-      ...(recurrenceEnum ? { recurrence: recurrenceEnum } : {}),
+      ...(statusFilter ? { status: statusFilter } : {}),
+      ...(recurrenceFilter ? { recurrence: recurrenceFilter } : {}),
     };
 
     const [data, total] = await Promise.all([
