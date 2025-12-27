@@ -8,17 +8,14 @@ export type BetterAuthSession = {
   user: User;
 } | null;
 
-export type AppSession = {
-  session: Session;
-  user: User;
-};
-
 /**
  * Extracts and validates session from any request.
  * Works for API routes, middleware, or server components.
  * Throws if session is missing.
  */
-export async function requireSession(req: Request | NextRequest): Promise<AppSession> {
+export async function requireSession(
+  req: Request | NextRequest
+): Promise<{ session: Session; user: User }> {
   // Extract headers
   const headers = "headers" in req ? req.headers : new Headers();
 

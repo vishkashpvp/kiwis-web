@@ -14,10 +14,12 @@ export const clientEnv = createEnv({
     NEXT_PUBLIC_APP_NAME: z.string().min(1),
     NEXT_PUBLIC_SUPPORT_CONTACT: z.email(),
     NEXT_PUBLIC_APP_URL: z.url(),
+    NEXT_PUBLIC_APP_VERSION: z.string().min(1),
   },
   runtimeEnv: {
     NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
     NEXT_PUBLIC_SUPPORT_CONTACT: process.env.NEXT_PUBLIC_SUPPORT_CONTACT,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_APP_VERSION: process.env.NEXT_PUBLIC_APP_VERSION,
   },
 });

@@ -24,7 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { PaymentStatus, type Payments } from "@/generated/prisma";
+import type { Payments } from "@/generated/prisma";
 import type { PaginatedPayments } from "@/lib/api/payments";
 import { getPayments } from "@/lib/api/payments";
 import { cn } from "@/lib/utils";
@@ -64,8 +64,8 @@ const paymentStatusClasses = {
 } satisfies Record<string, string>;
 
 /** status -> badge style */
-function statusClass(status: PaymentStatus) {
-  const key = PaymentStatus[status] as keyof typeof paymentStatusClasses;
+function statusClass(status: string) {
+  const key = status as keyof typeof paymentStatusClasses;
   return paymentStatusClasses[key] ?? DEFAULT_CLASSES;
 }
 
