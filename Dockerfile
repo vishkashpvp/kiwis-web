@@ -1,7 +1,7 @@
 # ---------- Build stage ----------
-# Use official Node.js 20 image based on Alpine Linux
+# Use official Node.js 24.12.0 image based on Alpine Linux
 # This stage is ONLY for building the app
-FROM node:20-alpine AS builder
+FROM node:24.12.0-alpine AS builder
 
 # Alpine images do not guarantee `make` is present
 # Since our workflow depends on Makefile, we install make explicitly
@@ -31,9 +31,9 @@ COPY . .
 RUN make build
 
 # ---------- Runtime stage ----------
-# Fresh Node.js image for running the app
+# Fresh Node.js 24.12.0 image for running the app
 # No build tools or temp files from previous stage
-FROM node:20-alpine
+FROM node:24.12.0-alpine
 
 # `make` is required again because container startup uses `make start`
 RUN apk add --no-cache make
