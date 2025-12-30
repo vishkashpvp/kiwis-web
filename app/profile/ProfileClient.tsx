@@ -10,7 +10,7 @@ import { formatDate } from "@/utils/date";
 
 export default function ProfileClient({ user }: { user: User }) {
   return (
-    <main className="max-w-2xl p-6 mx-auto ">
+    <main className="max-w-3xl p-6 mx-auto ">
       <div className="flex flex-col items-center mb-10">
         <div className="relative">
           <Avatar className="border w-28 h-28">

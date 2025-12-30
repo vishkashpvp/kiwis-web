@@ -5,7 +5,7 @@ import { Badge } from "./ui/badge";
 
 export default function LaunchHero() {
   return (
-    <div className="flex flex-col items-start gap-8">
+    <div className="flex flex-col items-start gap-8 pt-20">
       <Badge>Private by design</Badge>
 
       <div className="space-y-4">
