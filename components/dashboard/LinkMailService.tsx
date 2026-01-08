@@ -14,7 +14,7 @@ export default function LinkMailService({ name }: { name: string }) {
   };
 
   return (
-    <div className="w-full max-w-3xl px-6 py-6 mx-auto">
+    <div className="w-full max-w-3xl py-6 mx-auto">
       <h3 className="text-2xl font-bold">Welcome {name}</h3>
       <p className="my-3">
         To get started, please link your Gmail account to sync emails and payments.

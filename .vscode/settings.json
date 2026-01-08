@@ -1,0 +1,21 @@
+{
+  "css.lint.duplicateProperties": "warning",
+  "css.lint.emptyRules": "error",
+  "css.lint.float": "warning",
+  "css.lint.idSelector": "warning",
+  "css.lint.important": "warning",
+  "css.lint.unknownAtRules": "ignore",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnPaste.enabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnPaste.enabled": true
+}

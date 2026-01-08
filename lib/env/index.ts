@@ -1,5 +1,5 @@
-import { serverEnv } from "./server";
 import { clientEnv } from "./client";
+import { serverEnv } from "./server";
 
 export const env = {
   get server() {

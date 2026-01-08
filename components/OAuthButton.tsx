@@ -19,7 +19,7 @@ interface Props {
 export default function OAuthButton({ provider, label }: Props) {
   const handleOAuth = async () => {
     try {
-      await authClient.signIn.social({ provider, callbackURL: "/dashboard" });
+      await authClient.signIn.social({ provider, callbackURL: "/" });
     } catch (err) {
       console.error(err);
     }

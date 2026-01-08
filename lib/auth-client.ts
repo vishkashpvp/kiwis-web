@@ -9,6 +9,6 @@ export const requestGmailAccess = async () => {
   return authClient.linkSocial({
     provider: OAuthProvider.Google,
     scopes: [SCOPE_GMAIL_READONLY],
-    callbackURL: "/dashboard",
+    callbackURL: "/",
   });
 };

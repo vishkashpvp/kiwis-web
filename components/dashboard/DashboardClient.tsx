@@ -109,7 +109,7 @@ export default function DashboardClient({ user }: { user: User }) {
   }, [result, page]);
 
   return (
-    <div className="w-full max-w-3xl p-5 mx-auto space-y-6">
+    <div className="space-y-6">
       <div className="flex items-baseline justify-between gap-4">
         <h3 className="text-2xl font-semibold">Hey {user.name} 👋</h3>
         <Link
