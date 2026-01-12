@@ -37,7 +37,7 @@ model Session {
 }
 
 model Account {
-  id                    String     @id
+  id                    String    @id
   accountId             String
   providerId            String
   userId                String
@@ -48,10 +48,10 @@ model Account {
   refreshTokenExpiresAt DateTime?
   scope                 String?
   password              String?
-  createdAt             DateTime   @default(now())
-  updatedAt             DateTime   @updatedAt
-  user                  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  payments              Payments[]
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments              Payment[]
 
   @@map("account")
 }
@@ -67,7 +67,7 @@ model Verification {
   @@map("verification")
 }
 
-model Payments {
+model Payment {
   id                 String   @id
   account_id         String
   account            Account  @relation(fields: [account_id], references: [id], onDelete: Cascade)
@@ -84,5 +84,5 @@ model Payments {
   created_at         DateTime @default(now())
   updated_at         DateTime @default(now()) @updatedAt
 
-  @@map("payments")
+  @@map("payment")
 }

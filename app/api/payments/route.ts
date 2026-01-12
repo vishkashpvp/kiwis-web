@@ -35,20 +35,20 @@ export async function GET(req: Request) {
     const statusFilter = status ?? undefined;
     const recurrenceFilter = recurrence ?? undefined;
 
-    const where: Prisma.PaymentsWhereInput = {
+    const where: Prisma.PaymentWhereInput = {
       account_id: { in: accountIds },
       ...(statusFilter ? { status: statusFilter } : {}),
       ...(recurrenceFilter ? { recurrence: recurrenceFilter } : {}),
     };
 
     const [data, total] = await Promise.all([
-      prisma.payments.findMany({
+      prisma.payment.findMany({
         where,
         orderBy: { date: "desc" },
         skip,
         take: limit,
       }),
-      prisma.payments.count({ where }),
+      prisma.payment.count({ where }),
     ]);
 
     return NextResponse.json({ page, limit, total, data });
