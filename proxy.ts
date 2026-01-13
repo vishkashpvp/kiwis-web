@@ -23,7 +23,6 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/api/((?!auth).*)", // all api except auth
-    "/dashboard",
     "/profile",
   ],
 };

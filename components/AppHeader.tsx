@@ -15,7 +15,7 @@ export default function AppHeader() {
               className="inline-flex items-center justify-center w-6 h-6 text-xs font-semibold rounded-md bg-primary text-primary-foreground">
               ₹$
             </span>
-            <Link className="text-sm font-medium tracking-tight" href="/dashboard">
+            <Link className="text-sm font-medium tracking-tight" href="/">
               {env.client.NEXT_PUBLIC_APP_NAME}
             </Link>
           </div>
