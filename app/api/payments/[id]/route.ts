@@ -24,7 +24,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
     }
 
     // fetch payment
-    const payment = await prisma.payments.findUnique({ where: { id } });
+    const payment = await prisma.payment.findUnique({ where: { id } });
 
     if (!payment) {
       return NextResponse.json({ error: "Payment not found" }, { status: 404 });
