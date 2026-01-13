@@ -1,10 +1,10 @@
-import { Payments } from "@/generated/prisma";
+import { Payment } from "@/generated/prisma";
 
 export interface PaginatedPayments {
   page: number;
   limit: number;
   total: number;
-  data: Payments[];
+  data: Payment[];
 }
 
 export interface ApiResult<T> {

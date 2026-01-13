@@ -24,7 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { Payments } from "@/generated/prisma";
+import type { Payment } from "@/generated/prisma";
 import type { PaginatedPayments } from "@/lib/api/payments";
 import { getPayments } from "@/lib/api/payments";
 import { cn } from "@/lib/utils";
@@ -160,7 +160,7 @@ export default function DashboardClient({ user }: { user: User }) {
             {/* data rows with fade during loading */}
             {result &&
               result.data.length > 0 &&
-              result.data.map((p: Payments) => (
+              result.data.map((p: Payment) => (
                 <TableRow key={p.id} className={loading ? "opacity-60" : "hover:bg-muted/50"}>
                   <TableCell className="py-3 max-w-[200px] truncate">{p.merchant}</TableCell>
 
