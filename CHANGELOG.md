@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added Docker support with Node.js 24.12.0
+- Added Docker setup documentation (DOCKER.md)
+
+### Internal
+
+- Added multi-stage Dockerfile with Makefile integration
+- Updated .dockerignore to exclude Prisma generated files
+
 ## [0.9.0] - 2025-12-28
 
 ### Added
